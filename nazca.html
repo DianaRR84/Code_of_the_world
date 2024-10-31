@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompecabezas Líneas de Nazca</title>
+    <link rel="stylesheet" href="styles/nazca_styles.css">
+</head>
+<body>
+    
+    <div class="nazca-container">
+        <div class="pieces" id="pieces"></div>
+        <div class="dropzone" id="dropzone">
+            <p>Arrastra las piezas aquí</p>
+        </div>
+    </div>
+    <div id="timer" class="timer">Tiempo: <span id="time">60</span> segundos</div>
+    <div id="message" class="message" style="display: none;">
+        <p id="result"></p>
+        <button id="restartButton">Volver</button>
+    </div>
+    <script src="js/nazca.js"></script>
+</body>
+</html>

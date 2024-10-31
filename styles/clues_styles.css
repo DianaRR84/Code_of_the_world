@@ -1,0 +1,123 @@
+/* Estilos generales para la pantalla de Clues */
+body {
+  margin: 0;
+  font-family: 'Garamond', serif;
+  background: url('../img/clues_bg.jpg') no-repeat center center fixed; /* Cambia a tu imagen de fondo */
+  background-size: cover;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Alinea al inicio para el botón de volver */
+  height: 100vh;
+  position: relative; /* Necesario para posicionar el botón de volver */
+}
+
+/* Contenedor de pistas */
+.clues-container {
+  text-align: center;
+  width: 100%;
+}
+
+/* Estilo del título */
+.clues-title {
+  margin-top: 20px;
+  font-size: 3em; /* Aumentar el tamaño del título */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); /* Más sombra para mayor impacto */
+  color: #ffcc00; /* Color dorado para el título */
+}
+
+/* Contenedor de llaves */
+.key-container {
+    position: absolute; /* Para permitir la colocación aleatoria */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+  }
+
+/* Estilos para las llaves */
+.key {
+  width: 120px; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  opacity: 0.3; /* Aumentar opacidad para que sean más visibles */
+  position: absolute; /* Permitir posicionamiento absoluto */
+}
+
+.key.disabled {
+  pointer-events: none; /* Desactiva los eventos de puntero */
+  opacity: 0.5; /* Semitransparente */
+}
+
+/* Posicionamiento aleatorio para las llaves */
+#key1 {
+    top: 25%; /* Ajusta el valor para variar la posición */
+    left: 15%; /* Ajusta el valor para variar la posición */
+  }
+
+#key2 {
+    top: 55%; /* Ajusta el valor para variar la posición */
+    left: 70%; /* Ajusta el valor para variar la posición */
+  }
+
+/* Estilo para el botón de volver */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Estilo para el botón "Solve the Riddle" */
+.solve-button {
+    position: absolute; /* Asegúrate de que se posicione en la parte baja */
+    bottom: 30px; /* Espacio desde el fondo */
+    left: 50%; /* Centrar el botón */
+    transform: translateX(-50%); /* Centrar correctamente */
+    padding: 10px 20px;
+    font-size: 1.5em; /* Aumentar el tamaño del texto */
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    cursor: not-allowed; /* Indicador de que está deshabilitado */
+  }
+
+.solve-button.disabled {
+  opacity: 0.5; /* Semitransparente */
+  cursor: not-allowed; /* Cambia el cursor */
+}
+
+.solve-button:hover {
+  background-color: rgba(0, 0, 0, 0.9); /* Cambia el fondo al pasar el ratón */
+}
+
+/* Estilo para la nota */
+.vintage-note {
+  margin-top: 400px;
+  margin-left: 100px;
+  padding: 15px 20px;
+  width: 250px; /* Ajusta el ancho según lo necesites */
+  background-color: #f5deb3; /* Color tipo papel envejecido */
+  color: #333;
+  border: 1px solid #d2b48c;
+  border-radius: 5px;
+  font-family: 'Garamond', serif;
+  font-size: 1em;
+  text-align: center;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transform: rotate(-3deg); /* Ligero giro para darle un aspecto de nota casual */
+}
