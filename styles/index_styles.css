@@ -104,21 +104,29 @@ body {
   width: 20px; /* Ancho de la marca */
   height: 20px; /* Alto de la marca */
   border-radius: 50%; /* Bordes redondeados */
-  background-color: red; /* Color de la marca */
+  background-color: rgba(255, 0, 0, 0.8); /* Color de la marca (rojo con opacidad) */
+  border: 2px solid yellow; /* Borde amarillo */
   z-index: 10; /* Asegúrate de que estén por encima del mapa */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+}
+
+/* Efecto hover para destacar las ubicaciones */
+.location:hover {
+  background-color: rgba(255, 0, 0, 1); /* Cambia a rojo completo al pasar el mouse */
+  transform: scale(1.1); /* Aumenta un poco el tamaño */
 }
 
 /* Ubicación de Perú */
-#location-peru {
-  top: 450px; /* Ajusta la posición vertical */
-  left: 430px; /* Ajusta la posición horizontal */
-}
+/*#location-peru {
+  top: 450px; 
+  left: 430px; 
+}*/
 
 /* Ubicación de Venecia */
-#location-venecia {
-  top: 250px; /* Ajusta la posición vertical */
-  left: 775px; /* Ajusta la posición horizontal */
-}
+/*#location-venecia {
+  top: 250px; 
+  left: 775px; 
+}*/
 
 .map-page {
   margin: 0;

@@ -4,8 +4,8 @@ let globeY = 100; // Posición inicial en Y
 
 // Definimos las ubicaciones de destino (coordenadas aproximadas de Perú y Venecia)
 const locations = [
-    { name: 'Perú', x: 450, y: 430, width: 50, height: 50, target: 'nazca.html' }, // Coordenadas para Perú
-    { name: 'Venecia', x: 250, y: 775, width: 50, height: 50, target: 'masks.html' } // Coordenadas para Venecia
+    { name: 'Perú', x: 0.5, y: 0.75, target: 'nazca.html' }, // Coordenadas para Perú
+    { name: 'Venecia', x: 0.35, y: 0.4, target: 'masks.html' } // Coordenadas para Venecia
 ];
 
 const globeWidth = 50; // Ancho del globo
@@ -65,11 +65,17 @@ document.addEventListener('keydown', (event) => {
 
     // Comprobar si el globo ha llegado a alguna de las ubicaciones
     locations.forEach(location => {
+        const locX = location.x * windowWidth; // Convertir a píxeles
+        const locY = location.y * windowHeight; // Convertir a píxeles
+        //const locWidth = location.width; // Puede seguir en píxeles si es fijo
+        //const locHeight = location.height; // Puede seguir en píxeles si es fijo
+
+        console.log(`Globo en: (${globeX}, ${globeY}), ubicación: (${location.x}, ${location.y})`); // Ver ubicación del globo
         if (
-            globeX >= location.x &&
-            globeX <= location.x + location.width &&
-            globeY >= location.y &&
-            globeY <= location.y + location.height
+            globeX >= locX - 25 && // Margen de proximidad
+            globeX <= locX + 25 + location.width &&
+            globeY >= locY - 25 && // Margen de proximidad
+            globeY <= locY + 25 + location.height
         ) {
 
             // Reproducir el sonido al encontrar la ubicación
@@ -81,7 +87,32 @@ document.addEventListener('keydown', (event) => {
             // Mostrar un mensaje y redirigir
             setTimeout(() => {
                 window.location.href = location.target; // Redirigir a la página correspondiente
-            }, 1000); // Esperar medio segundo antes de redirigir
+            }, 1000); // Esperar un segundo antes de redirigir
         }
     });
 });
+
+window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Actualiza las posiciones de las ubicaciones
+    locations.forEach(location => {
+        const locX = location.x * windowWidth;
+        const locY = location.y * windowHeight;
+        
+        // Puedes aquí aplicar estilos o mover elementos si es necesario
+        // Por ejemplo, puedes mover los elementos de ubicación
+        const locationElement = document.getElementById(`location-${location.name.toLowerCase()}`);
+        if (locationElement) {
+            locationElement.style.left = `${locX}px`;
+            locationElement.style.top = `${locY}px`;
+        }
+    });
+});
+
+// Escuchar el evento de redimensionamiento
+window.addEventListener('resize', handleResize);
+
+// Llamar a la función de redimensionamiento al cargar la página
+window.dispatchEvent(new Event('resize'));

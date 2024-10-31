@@ -62,7 +62,7 @@ body {
   }
 
 /* Estilo para el botón de volver */
-.back-button {
+.back2-button {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -75,9 +75,10 @@ body {
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s;
+  z-index: 1;
 }
 
-.back-button:hover {
+.back2-button:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 

@@ -3,9 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const key2 = document.getElementById('key2');
   const solveButton = document.getElementById('solveButton');
 
-  document.getElementById('backButton').addEventListener('click', function() {
-    window.location.href = 'index.html';
-  });
+  
   
   // Verifica si la primera llave fue desbloqueada al completar el rompecabezas
   if (localStorage.getItem('key1Unlocked') === 'true') {
