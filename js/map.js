@@ -1,118 +1,70 @@
-const globe = document.getElementById('globe');
-let globeX = 100; // Posición inicial en X
-let globeY = 100; // Posición inicial en Y
+// Obtener referencias a los elementos
+const globo = document.getElementById("globo");
+const punto1 = document.getElementById("punto1");
+const punto2 = document.getElementById("punto2");
+const mapa = document.getElementById("mapa");
 
-// Definimos las ubicaciones de destino (coordenadas aproximadas de Perú y Venecia)
-const locations = [
-    { name: 'Perú', x: 0.5, y: 0.75, target: 'nazca.html' }, // Coordenadas para Perú
-    { name: 'Venecia', x: 0.35, y: 0.4, target: 'masks.html' } // Coordenadas para Venecia
-];
+// Calcular la posición inicial del globo para centrarlo
+let posX = (mapa.clientWidth / 2) - (globo.clientWidth / 2);
+let posY = (mapa.clientHeight / 2) - (globo.clientHeight / 2);
 
-const globeWidth = 50; // Ancho del globo
-const globeHeight = 50; // Alto del globo
+// Coloca el globo en el centro al cargar
+globo.style.left = `${posX}px`;
+globo.style.top = `${posY}px`;
 
-// Asignar las coordenadas iniciales al estilo del globo
-globe.style.left = `${globeX}px`;
-globe.style.top = `${globeY}px`;
+function moverGlobo(event) {
+    const step = 10; // Tamaño del paso del globo
 
-// Cargar el sonido (agrega la ruta de tu archivo de sonido)
-const foundSound = new Audio('sounds/audio1.mp3');
-
-document.addEventListener('keydown', (event) => {
-    const step = 5; // Paso del globo
-
-    // Guardamos las posiciones anteriores para permitir revertir si es necesario
-    const previousX = globeX;
-    const previousY = globeY;
-
+    // Detecta qué tecla se ha presionado
     switch (event.key) {
-        case 'ArrowUp':
-            globeY -= step;
+        case "ArrowUp":
+            posY -= step;
             break;
-        case 'ArrowDown':
-            globeY += step;
+        case "ArrowDown":
+            posY += step;
             break;
-        case 'ArrowLeft':
-            globeX -= step;
+        case "ArrowLeft":
+            posX -= step;
             break;
-        case 'ArrowRight':
-            globeX += step;
+        case "ArrowRight":
+            posX += step;
             break;
     }
 
-    // Restringir el movimiento del globo dentro de los límites de la pantalla
-    // Obtenemos el ancho y alto de la ventana
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    // Actualiza la posición del globo en el mapa
+    globo.style.left = `${posX}px`;
+    globo.style.top = `${posY}px`;
 
-    // Limitar la posición X
-    if (globeX < 0) {
-        globeX = 0; // No permitir que se salga por la izquierda
-    } else if (globeX > windowWidth - globeWidth) {
-        globeX = windowWidth - globeWidth; // No permitir que se salga por la derecha
+    // Verifica colisiones con los puntos
+    verificarColision();
+}
+
+function verificarColision() {
+    // Obtener posiciones de los puntos
+    const punto1Rect = punto1.getBoundingClientRect();
+    const punto2Rect = punto2.getBoundingClientRect();
+    const globoRect = globo.getBoundingClientRect();
+
+    // Detecta si el globo colisiona con el primer punto
+    if (
+        globoRect.left < punto1Rect.right &&
+        globoRect.right > punto1Rect.left &&
+        globoRect.top < punto1Rect.bottom &&
+        globoRect.bottom > punto1Rect.top
+    ) {
+        window.location.href = "nazca.html"; // Redirige a nazca.html
     }
 
-    // Limitar la posición Y
-    if (globeY < 0) {
-        globeY = 0; // No permitir que se salga por arriba
-    } else if (globeY > windowHeight - globeHeight) {
-        globeY = windowHeight - globeHeight; // No permitir que se salga por abajo
+    // Detecta si el globo colisiona con el segundo punto
+    if (
+        globoRect.left < punto2Rect.right &&
+        globoRect.right > punto2Rect.left &&
+        globoRect.top < punto2Rect.bottom &&
+        globoRect.bottom > punto2Rect.top
+    ) {
+        window.location.href = "masks.html"; // Redirige a masks.html
     }
+}
 
-    // Actualizar la posición del globo en el mapa
-    globe.style.left = `${globeX}px`;
-    globe.style.top = `${globeY}px`;
-
-    // Comprobar si el globo ha llegado a alguna de las ubicaciones
-    locations.forEach(location => {
-        const locX = location.x * windowWidth; // Convertir a píxeles
-        const locY = location.y * windowHeight; // Convertir a píxeles
-        //const locWidth = location.width; // Puede seguir en píxeles si es fijo
-        //const locHeight = location.height; // Puede seguir en píxeles si es fijo
-
-        console.log(`Globo en: (${globeX}, ${globeY}), ubicación: (${location.x}, ${location.y})`); // Ver ubicación del globo
-        if (
-            globeX >= locX - 25 && // Margen de proximidad
-            globeX <= locX + 25 + location.width &&
-            globeY >= locY - 25 && // Margen de proximidad
-            globeY <= locY + 25 + location.height
-        ) {
-
-            // Reproducir el sonido al encontrar la ubicación
-            foundSound.play();
-
-            // Cambiar la imagen del globo por una lupa
-            //globe.src = 'img/lens.png';
-
-            // Mostrar un mensaje y redirigir
-            setTimeout(() => {
-                window.location.href = location.target; // Redirigir a la página correspondiente
-            }, 1000); // Esperar un segundo antes de redirigir
-        }
-    });
-});
-
-window.addEventListener('resize', () => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-
-    // Actualiza las posiciones de las ubicaciones
-    locations.forEach(location => {
-        const locX = location.x * windowWidth;
-        const locY = location.y * windowHeight;
-        
-        // Puedes aquí aplicar estilos o mover elementos si es necesario
-        // Por ejemplo, puedes mover los elementos de ubicación
-        const locationElement = document.getElementById(`location-${location.name.toLowerCase()}`);
-        if (locationElement) {
-            locationElement.style.left = `${locX}px`;
-            locationElement.style.top = `${locY}px`;
-        }
-    });
-});
-
-// Escuchar el evento de redimensionamiento
-window.addEventListener('resize', handleResize);
-
-// Llamar a la función de redimensionamiento al cargar la página
-window.dispatchEvent(new Event('resize'));
+// Agrega el evento de teclado para mover el globo
+window.addEventListener("keydown", moverGlobo);

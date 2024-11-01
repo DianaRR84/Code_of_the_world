@@ -1,0 +1,49 @@
+
+#mapa {
+    position: relative;
+    width: 1500px;
+    height: 720px;
+    background-image: url('../img/map.jpg'); /* Usa la ruta a la imagen del mapa */
+    background-size: cover;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .punto {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+  }
+  #globo {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background-image: url('../img/globe.png');
+    background-size: contain;
+    
+  }
+  
+  /* Estilos para el botón de volver */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    z-index: 3;
+  }
+  
+  .back-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  
+  

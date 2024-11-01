@@ -52,17 +52,17 @@ body {
 
 /* Posicionamiento aleatorio para las llaves */
 #key1 {
-    top: 25%; /* Ajusta el valor para variar la posición */
-    left: 15%; /* Ajusta el valor para variar la posición */
+    top: 25%; 
+    left: 15%; 
   }
 
 #key2 {
-    top: 55%; /* Ajusta el valor para variar la posición */
-    left: 70%; /* Ajusta el valor para variar la posición */
+    top: 50%; 
+    left: 70%; 
   }
 
 /* Estilo para el botón de volver */
-.back2-button {
+.back-button {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -78,7 +78,7 @@ body {
   z-index: 1;
 }
 
-.back2-button:hover {
+.back-button:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
@@ -106,10 +106,26 @@ body {
   background-color: rgba(0, 0, 0, 0.9); /* Cambia el fondo al pasar el ratón */
 }
 
-/* Estilo para la nota */
-.vintage-note {
+/* Estilo para las notas */
+.note1 {
   margin-top: 400px;
-  margin-left: 100px;
+  margin-left: 200px; 
+  padding: 15px 20px;
+  width: 250px; /* Ajusta el ancho según lo necesites */
+  background-color: #f5deb3; /* Color tipo papel envejecido */
+  color: #333;
+  border: 1px solid #d2b48c;
+  border-radius: 5px;
+  font-family: 'Garamond', serif;
+  font-size: 1em;
+  text-align: center;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transform: rotate(-3deg); /* Ligero giro para darle un aspecto de nota casual */
+}
+
+.note2 {
+  margin-top: 100px;
+  margin-left: 1000px;
   padding: 15px 20px;
   width: 250px; /* Ajusta el ancho según lo necesites */
   background-color: #f5deb3; /* Color tipo papel envejecido */

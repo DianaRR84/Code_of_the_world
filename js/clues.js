@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!document.getElementById('note1')) {
         const note1 = document.createElement('div');
         note1.id = 'note1';
-        note1.classList.add('vintage-note');
+        note1.classList.add('note1');
         note1.textContent = 'Pista 1: Cada letra representa su posición en el abecedario, restándole 3 al número correspondiente.';
         key1.parentNode.appendChild(note1);
       }
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       key2.style.opacity = 1;
       if (!document.getElementById('note2')) {
         const note2 = document.createElement('div');
-        note2.id = 'note1';
-        note2.classList.add('vintage-note');
+        note2.id = 'note2';
+        note2.classList.add('note2');
         note2.textContent = 'Pista 2: Intercambia el primer y último dígito, y a los números impares súmales 1.'
         key2.parentNode.appendChild(note2);
       }
@@ -36,6 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
       solveButton.classList.remove('disabled');
       solveButton.style.opacity = 1;
       solveButton.style.cursor = 'pointer';
+
+      // Añade el evento de clic para redirigir a final.html
+    solveButton.addEventListener('click', () => {
+      window.location.href = 'final.html'; // Redirige a final.html
+    });
     }
 
  

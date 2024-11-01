@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Riddle</title>
+  <link rel="stylesheet" href="styles/final_styles.css">
+</head>
+<body>
+  <div class="final-container">
+    <h1>Final Riddle</h1>
+    <p>¡Felicidades por llegar hasta aquí! Aquí están las pistas que has desbloqueado:</p>
+
+    <!-- Notas desbloqueadas -->
+    <div class="note">
+      <p><strong>Pista 1:</strong> Cada letra representa su posición en el abecedario, restándole 3 al número correspondiente.</p>
+    </div>
+    <div class="note">
+      <p><strong>Pista 2:</strong> Intercambia el primer y último dígito, y a los números impares súmales 1.</p>
+    </div>
+
+    <!-- Código encriptado y entrada de solución -->
+    <div class="code-container">
+      <p><strong>Código encriptado:</strong> D7F3</p>
+      <label for="answer">Introduce la solución:</label>
+      <input type="text" id="answer" maxlength="4" placeholder="XXXX">
+      <button id="verifyButton">Verificar</button>
+    </div>
+
+    <!-- Mensaje de resultado -->
+    <p id="resultMessage"></p>
+  </div>
+</body>
+</html>
+
