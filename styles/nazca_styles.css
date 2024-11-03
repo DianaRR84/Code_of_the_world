@@ -2,7 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-image: url('../img/fondo_nazca.jpg'); /* Fondo con motivos peruanos */
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333333;
 }
 
 .nazca-container {
@@ -22,6 +25,8 @@ body {
     margin: 10px;
     cursor: pointer;
     transition: transform 0.3s;
+    border: 2px solid #333333;
+    border-radius: 5px;
 }
 
 .dropzone {
@@ -53,10 +58,13 @@ body {
     top: 20px;
     right: 20px;
     font-size: 18px;
-    background-color: #ffffff;
+    background-color: #ffe4b5; /* Color de fondo cálido */
     padding: 10px;
-    border: 1px solid #007bff;
-    border-radius: 5px;
+    border: 3px solid #ff6347; /* Bordes decorativos */
+    border-radius: 10px;
+    color: #8b4513; /* Color de texto oscuro */
+    font-family: 'Andina', sans-serif; /* Usa una fuente peruana o similar si está disponible */
+    text-align: center;
 }
 
 .message {
@@ -65,11 +73,13 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    border: 2px solid #007bff;
+    border: 3px solid #ff6347;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
-    display: none; /* Oculta el mensaje al principio */
+    font-family: 'Andina', sans-serif; /* Usa una fuente inspirada en la cultura peruana */
+    color: #8b4513;
+    display: none;
 }
 
 #restartButton {
@@ -79,10 +89,19 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 #restartButton:hover {
-    background-color: #0056b3;
+    background-color: #ff4500;
+}
+
+/* Añadir sombra a las piezas y dropzone */
+.pieces .piece,
+.dropzone {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 

@@ -29,6 +29,10 @@ window.addEventListener('load', () => {
   });
   document.querySelector('#memory-board').innerHTML = html;
 
+  // Referencias para el modal de victoria
+  const victoryModal = document.getElementById('victoryModal');
+  const closeVictoryModal = document.getElementById('closeVictoryModal');
+
   // Vincular el evento de clic para cada tarjeta
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', () => {
@@ -52,25 +56,28 @@ window.addEventListener('load', () => {
           }, 1000);
         }
 
-        // Actualizar el puntaje
-        document.getElementById('pairs-clicked').textContent = memoryGame.pairsClicked;
-        document.getElementById('pairs-guessed').textContent = memoryGame.pairsGuessed;
-
-        // Limpiar cartas seleccionadas
-        memoryGame.pickedCards = [];
-
         // Verificar si el juego ha terminado
         if (memoryGame.checkIfFinished()) {
           setTimeout(() => {
-            alert('¡Has conseguido completar el juego!'); // Mensaje de victoria
+            victoryModal.style.display = 'flex'; // Muestra el modal
             localStorage.setItem('key2Unlocked', 'true'); // Guarda el estado de desbloqueo de la llave 2
-            setTimeout(() => {
-              window.location.href = 'clues.html'; // Redirige a index.html
-            }, 2000); // Espera 2 segundos antes de redirigir
           }, 500);
         }
       }
     });
+  });
+
+  // Cerrar el modal cuando el usuario haga clic en la "x" o fuera del contenido
+  closeVictoryModal.addEventListener('click', () => {
+    victoryModal.style.display = 'none';
+    window.location.href = 'clues.html'; // Redirige a la página deseada
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target == victoryModal) {
+      victoryModal.style.display = 'none';
+      window.location.href = 'clues.html'; // Redirige a la página deseada
+    }
   });
 });
 

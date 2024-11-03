@@ -106,7 +106,7 @@ function drop(e) {
         // Crear una nueva pieza en la posición correcta en el dropzone
         const img = document.createElement('div');
         img.style.backgroundImage = `url(${imageUrl})`;
-        img.style.backgroundSize = `${cols * 100}px ${rows * 100}px`; // Ajusta esto según el tamaño original
+        img.style.backgroundSize = `${cols * 100}px ${rows * 100}px`; 
         img.style.backgroundPosition = position;
         img.style.width = '100px'; // Ancho de la pieza en el dropzone
         img.style.height = '100px'; // Altura de la pieza en el dropzone
