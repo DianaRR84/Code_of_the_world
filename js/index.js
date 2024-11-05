@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   const mapBox = document.getElementById('mapBox');
 
+  // Reproducir música de fondo
+  const backgroundMusic = new Audio('sounds/suspense.mp3');
+  backgroundMusic.loop = true; // Para que la música se reproduzca en bucle
+  backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
+  
+  // Función para iniciar la música
+  function playMusic() {
+    backgroundMusic.play().catch(error => console.log('Autoplay bloqueado'));
+  }
+
+  // Iniciar música tras la primera interacción (clic)
+  document.addEventListener('click', playMusic, { once: true });
+  
   // Redirigir al usuario al hacer clic en el primer botón
   mapBox.addEventListener('click', () => {
     window.location.href = "map.html";

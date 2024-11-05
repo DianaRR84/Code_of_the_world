@@ -18,12 +18,40 @@ function startTimer() {
         timerElement.textContent = seconds; // Actualiza el tiempo mostrado
         if (seconds <= 0) {
             clearInterval(timer);
+            stopMusic(); // Detener la música de fondo
+            playSound(failSound); // Reproduce el sonido de fallo
             showMessage(false); // Muestra el mensaje de tiempo agotado
         }
     }, 1000);
 }
 
+// Reproducir música de fondo
+const backgroundMusic = new Audio('sounds/peru.mp3');
+backgroundMusic.loop = true; // Para que la música se reproduzca en bucle
+backgroundMusic.volume = 0.1; // Ajusta el volumen (0.0 a 1.0)
 
+// Sonidos de victoria y fallo
+const victorySound = new Audio('sounds/winning.mp3');
+const failSound = new Audio('sounds/losing.mp3');
+
+// Función para iniciar la música
+function playMusic() {
+  backgroundMusic.play().catch(error => console.log('Autoplay bloqueado'));
+}
+
+// Función para detener la música
+function stopMusic() {
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+  }
+  
+  // Función para reproducir sonidos específicos (victoria o fallo)
+  function playSound(sound) {
+    sound.play().catch(error => console.log('Error reproduciendo el sonido'));
+  }
+
+// Iniciar música tras la primera interacción (clic)
+document.addEventListener('click', playMusic, { once: true });
 
 // Función para crear piezas del rompecabezas a partir de la imagen
 function createPuzzlePieces() {
@@ -120,6 +148,8 @@ function drop(e) {
         // Verifica si se completó el rompecabezas
         if (placedPieces === rows * cols) {
             clearInterval(timer); // Detiene el temporizador
+            stopMusic(); // Detener la música de fondo
+            playSound(victorySound); // Reproduce el sonido de victoria
             showMessage(true); // Muestra el mensaje de rompecabezas resuelto
         }
     }
@@ -138,12 +168,14 @@ function drop(e) {
 function showMessage(solved) {
     if (solved) {
         resultElement.textContent = `Rompecabezas resuelto en ${60 - seconds} segundos`;
+        restartButton.style.display = 'none'; // Oculta el botón de reinicio
         localStorage.setItem('key1Unlocked', 'true'); // Guarda el estado de la primera llave habilitada
         setTimeout(() => {
-            window.location.href = 'clues.html'; // Redirige a la pantalla de pistas después de 1 segundo
-        }, 1000);
+            window.location.href = 'clues.html'; // Redirige a la pantalla de pistas después de 3 segundos
+        }, 3000);
     } else {
         resultElement.textContent = `Tiempo agotado. Intenta de nuevo!`;
+        restartButton.style.display = 'block'; // Muestra el botón de reinicio
     }
     messageElement.style.display = 'block';
 }
@@ -151,7 +183,7 @@ function showMessage(solved) {
 // Función para reiniciar el juego
 restartButton.addEventListener('click', () => {
     localStorage.removeItem('key1Unlocked'); // Borra el progreso de la llave al reiniciar
-    window.location.href = 'index.html'; // Redirige a la página principal
+    window.location.href = 'nazca.html'; // Redirige a la página principal
 });
 
 // Inicializa el rompecabezas al cargar la página

@@ -17,6 +17,22 @@ const memoryGame = new MemoryGame(cards);
 memoryGame.shuffleCards();
 
 window.addEventListener('load', () => {
+  // Reproducir música de fondo
+  const backgroundMusic = new Audio('sounds/waltz.mp3');
+  backgroundMusic.loop = true; // Para que la música se reproduzca en bucle
+  backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
+  
+  // Función para iniciar la música
+  function playMusic() {
+    backgroundMusic.play().catch(error => console.log('Autoplay bloqueado'));
+  }
+
+  // Iniciar música tras la primera interacción (clic)
+  document.addEventListener('click', playMusic, { once: true });
+
+  // Sonido específico
+  const victorySound = new Audio('sounds/winning.mp3');
+  
   // Agregar las cartas al HTML
   let html = '';
   memoryGame.cards.forEach((pic) => {
@@ -28,10 +44,6 @@ window.addEventListener('load', () => {
     `;
   });
   document.querySelector('#memory-board').innerHTML = html;
-
-  // Referencias para el modal de victoria
-  const victoryModal = document.getElementById('victoryModal');
-  const closeVictoryModal = document.getElementById('closeVictoryModal');
 
   // Vincular el evento de clic para cada tarjeta
   document.querySelectorAll('.card').forEach((card) => {
@@ -56,28 +68,30 @@ window.addEventListener('load', () => {
           }, 1000);
         }
 
+        
+
+        // Limpiar cartas seleccionadas
+        memoryGame.pickedCards = [];
+
         // Verificar si el juego ha terminado
         if (memoryGame.checkIfFinished()) {
+          backgroundMusic.pause(); // Detiene la música de fondo
+          victorySound.play(); // Reproduce el sonido de victoria
+
+          // Muestra el mensaje de juego terminado
+          const endGameMessage = document.getElementById('end-game-message');
+          endGameMessage.style.display = 'block';
+          endGameMessage.innerHTML = '<p>Juego terminado</p>';
+
+          localStorage.setItem('key2Unlocked', 'true');
+
+          // Redirige después de 3 segundos
           setTimeout(() => {
-            victoryModal.style.display = 'flex'; // Muestra el modal
-            localStorage.setItem('key2Unlocked', 'true'); // Guarda el estado de desbloqueo de la llave 2
-          }, 500);
+            window.location.href = 'clues.html';
+          }, 3000);
         }
       }
     });
-  });
-
-  // Cerrar el modal cuando el usuario haga clic en la "x" o fuera del contenido
-  closeVictoryModal.addEventListener('click', () => {
-    victoryModal.style.display = 'none';
-    window.location.href = 'clues.html'; // Redirige a la página deseada
-  });
-
-  window.addEventListener('click', (event) => {
-    if (event.target == victoryModal) {
-      victoryModal.style.display = 'none';
-      window.location.href = 'clues.html'; // Redirige a la página deseada
-    }
   });
 });
 

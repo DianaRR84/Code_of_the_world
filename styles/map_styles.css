@@ -1,5 +1,5 @@
 
-#mapa {
+#map {
     position: relative;
     width: 1500px;
     height: 720px;
@@ -8,14 +8,14 @@
     margin: 0 auto;
     overflow: hidden;
   }
-  .punto {
+  .point {
     position: absolute;
     width: 10px;
     height: 10px;
     background-color: red;
     border-radius: 50%;
   }
-  #globo {
+  #globe {
     position: absolute;
     width: 30px;
     height: 40px;

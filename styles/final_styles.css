@@ -19,15 +19,15 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  h1 {
-    color: #4e3d2d;
+h1 {
+  color: #4e3d2d;
   font-size: 3em;
   margin-bottom: 20px;
   text-shadow: 2px 2px 0 #d3b692;
-  }
+}
   
-  .note {
-    margin: 20px auto;
+.note {
+  margin: 20px auto;
   padding: 20px;
   background-color: #e5cda5;
   color: #161514;
@@ -44,47 +44,47 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
-  }
+}
   
  
 
-  /* Código encriptado */
+/* Código encriptado */
 .code-container {
-    margin: 30px 0;
-    font-size: 1.2em;
-  }
+  margin: 30px 0;
+  font-size: 1.2em;
+}
   
-  /* Campo de entrada y botón */
+/* Campo de entrada y botón */
 #answer {
-    padding: 10px;
-    font-size: 1.2em;
-    border: 2px solid #b59c77;
-    border-radius: 5px;
-    text-align: center;
-    width: 100px;
-    background-color: #e5cda5;
-    color: #161514;
-  }
+  padding: 10px;
+  font-size: 1.2em;
+  border: 2px solid #b59c77;
+  border-radius: 5px;
+  text-align: center;
+  width: 100px;
+  background-color: #e5cda5;
+  color: #161514;
+}
   
-  #verifyButton {
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #d1a86c;
-    color: #4e3d2d;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-    position: relative; /* Asegúrate de que el botón está en un contexto de posicionamiento */
-    z-index: 10; /* Asegúrate de que el botón esté por encima de otros elementos */
-  }
+#verifyButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #d1a86c;
+  color: #4e3d2d;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+  position: relative; /* Asegúrate de que el botón está en un contexto de posicionamiento */
+  z-index: 10; /* Asegúrate de que el botón esté por encima de otros elementos */
+}
 
-  #verifyButton:hover {
-    background-color: #b98d58;
-  }
+#verifyButton:hover {
+  background-color: #b98d58;
+}
   
-  /* Estilos para el fondo del modal */
+/* Estilos para el fondo del modal */
 .modal {
   display: none; /* Oculto por defecto */
   position: fixed;

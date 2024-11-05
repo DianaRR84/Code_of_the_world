@@ -3,7 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const key2 = document.getElementById('key2');
   const solveButton = document.getElementById('solveButton');
 
+  // Reproducir música de fondo
+  const backgroundMusic = new Audio('sounds/suspense.mp3');
+  backgroundMusic.loop = true; // Para que la música se reproduzca en bucle
+  backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
   
+  // Función para iniciar la música
+  function playMusic() {
+    backgroundMusic.play().catch(error => console.log('Autoplay bloqueado'));
+  }
+
+  // Iniciar música tras la primera interacción (clic)
+  document.addEventListener('click', playMusic, { once: true });
   
   // Verifica si la primera llave fue desbloqueada al completar el rompecabezas
   if (localStorage.getItem('key1Unlocked') === 'true') {

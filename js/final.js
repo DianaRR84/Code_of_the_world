@@ -6,24 +6,62 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeModal = document.getElementById('closeModal');
   const answerInput = document.getElementById('answer'); // Referencia al campo de entrada
   const completionScreen = document.getElementById('completionScreen'); // Referencia a la pantalla de finalización
+  completionScreen.style.display = 'none'; // Oculta al inicio
   
+  // Reproducir música de fondo
+  // Music by https://www.fiftysounds.com
+  const backgroundMusic = new Audio('sounds/final.mp3');
+  backgroundMusic.loop = true; // Para que la música se reproduzca en bucle
+  backgroundMusic.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
+
+  // Función para iniciar la música
+  function playMusic() {
+    backgroundMusic.play().catch(error => console.log('Autoplay bloqueado'));
+  }
+
+  // Iniciar música tras la primera interacción (clic)
+  document.addEventListener('click', playMusic, { once: true });
   
   let gameCompleted = false; // Bandera para saber si el juego terminó
   
+  // Cargar sonidos específicos
+  const victorySound = new Audio('sounds/winning.mp3');
+  const failSound = new Audio('sounds/losing.mp3');
+
   verifyButton.addEventListener('click', () => {
     // Obtener la respuesta ingresada por el usuario
     const userAnswer = answerInput.value;
 
+    // Detener la música de fondo
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0; // Reinicia la música de fondo
+
     // Verificar si la respuesta es correcta
     if (userAnswer === '7324') {
+      // Mostrar mensaje de éxito
       modalMessage.textContent = '¡Juego terminado! Has descifrado el código correctamente.';
       modalMessage.style.color = 'green';
       verifyButton.disabled = true; // Deshabilitar el botón de verificar después de la respuesta correcta
       gameCompleted = true; // Marcar el juego como completado
+
+      // Borrar la respuesta del usuario
+      answerInput.value = ''; // Limpiar el campo de entrada
+
+      // Reproducir sonido de victoria
+      victorySound.play();
+
+      // Ocultar el modal después de 3 segundos y mostrar la pantalla de finalización
+      setTimeout(() => {
+        modal.style.display = 'none'; // Ocultar modal
+        completionScreen.style.display = 'flex'; // Mostrar la pantalla de finalización
+      }, 3000); // 3000 ms = 3 segundos
     } else {
       modalMessage.textContent = 'Respuesta incorrecta. Inténtalo de nuevo.';
       modalMessage.style.color = 'red';
       answerInput.value = ''; // Borrar la respuesta del usuario si es incorrecta
+    
+      // Reproducir sonido de error
+      failSound.play();
     }
 
     // Mostrar el modal
