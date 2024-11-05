@@ -3,21 +3,27 @@ body {
     font-family: 'Georgia', serif;
     background: url('../img/riddle.jpg') no-repeat center center fixed;
     background-size: cover;
-    color:#4e3d2d;
+    color:black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-  }
+}
 
 .final-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
-    font-family: Arial, sans-serif;
-  }
+    font-family: Arial, sans-serif;   
+}
+
+#text{
+  background-color: #d1a86c;
+  color: #4e3d2d;
+  padding: 10px;
+}
   
 h1 {
   color: #4e3d2d;
@@ -121,7 +127,7 @@ h1 {
   color: black;
 }
 
-.completion-screen {
+#completionScreen {
   display: none; /* Oculto por defecto */
   position: fixed;
   top: 0;

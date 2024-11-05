@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Configura el botón para verificar la solución
+  const completionScreen = document.getElementById('completionScreen');
+  if (completionScreen) {
+    completionScreen.style.display = 'none'; // Oculta al inicio
+  }
   const verifyButton = document.getElementById('verifyButton');
   const modal = document.getElementById('modal');
   const modalMessage = document.getElementById('modalMessage');
   const closeModal = document.getElementById('closeModal');
   const answerInput = document.getElementById('answer'); // Referencia al campo de entrada
-  const completionScreen = document.getElementById('completionScreen'); // Referencia a la pantalla de finalización
-  completionScreen.style.display = 'none'; // Oculta al inicio
+  
   
   // Reproducir música de fondo
   // Music by https://www.fiftysounds.com
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Ocultar el modal después de 3 segundos y mostrar la pantalla de finalización
       setTimeout(() => {
         modal.style.display = 'none'; // Ocultar modal
-        completionScreen.style.display = 'flex'; // Mostrar la pantalla de finalización
+        if (gameCompleted) completionScreen.style.display = 'flex';
       }, 3000); // 3000 ms = 3 segundos
     } else {
       modalMessage.textContent = 'Respuesta incorrecta. Inténtalo de nuevo.';
