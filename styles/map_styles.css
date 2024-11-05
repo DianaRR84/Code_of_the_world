@@ -12,8 +12,8 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: red;
-    border-radius: 50%;
+    /*background-color: red;
+    border-radius: 50%;*/
   }
   #globe {
     position: absolute;
